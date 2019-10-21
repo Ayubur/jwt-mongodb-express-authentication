@@ -10,7 +10,9 @@ const app = express();
 
 
 // mongodb setup
-mongoose.connect('mongodb://127.0.0.1:27017/auth', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://admin:admin123@ds137508.mlab.com:37508/jwt-auth',{useNewUrlParser: true, useUnifiedTopology: true});
+
+//mongoose.connect('mongodb://127.0.0.1:27017/auth', {useNewUrlParser: true, useUnifiedTopology: true});
 //Get the default connection
 const db = mongoose.connection;
 
