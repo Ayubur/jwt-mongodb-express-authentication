@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwtTokenGenerator = require("../lib/heplers/jwtTokenGenerator");
 
 exports.register = async (req, res) => {
   const { email, password, name } = req.body || {};
@@ -23,7 +24,14 @@ exports.register = async (req, res) => {
     res.status(400);
     throw new Error("Invalid user data");
   }
+
+  const jwtToken = await jwtTokenGenerator(user);
+  
   res.status(201);
-  return;
+  return {
+    name,
+    email,
+    accessToken: jwtToken
+  };
 }
 
